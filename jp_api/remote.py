@@ -10,12 +10,12 @@ from sensors.rgb_led import RgbLed as rgb_led
 @app.route('/sensor/humidity')
 def humidity():
     humiditySensor = humiture()
-    return jsonifyhumiditySensor.getHumidityInPercent())
+    return jsonify(humiditySensor.getHumidityInPercent())
 
 @app.route('/sensor/temperature')
 def temperature():
     humiditySensor = humiture()
-    return jsonifyhumiditySensor.getTemperatureInCeluis())
+    return jsonify(humiditySensor.getTemperatureInCeluis())
 
 @app.route('/sensor/rain')
 def rain():
