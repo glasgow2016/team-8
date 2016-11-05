@@ -3,7 +3,7 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 from sensors.laser import Laser as laser
-from sensors.lcd import Lcd as lcd
+from sensors.lcd import Lcd as Lcd
 from sensors.ultrasonic_ranging import UltrasonicRanging as ultrasound
 
 @app.route('/sensor/laser/<on>')
@@ -22,7 +22,7 @@ def ultrasound():
 
 @app.route('/sensor/lcd/<row1>/<row2>')
 def lcd(row1, row2):
-    LcdScreen = lcd()
+    LcdScreen = Lcd()
     LcdScreen.setUpperText(row1)
     LcdScreen.setLowerText(row2)
     return jsonify(True)
