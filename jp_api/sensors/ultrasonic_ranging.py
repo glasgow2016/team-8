@@ -6,27 +6,26 @@ import time
 
 class UltrasonicRanging:
 
-	TRIG = 15
-	ECHO = 16
-
 	def __init__(self):
+		self.TRIG = 15
+		self.ECHO = 16
 		GPIO.setmode(GPIO.BOARD)
-		GPIO.setup(TRIG, GPIO.OUT)
-		GPIO.setup(ECHO, GPIO.IN)
+		GPIO.setup(self.TRIG, GPIO.OUT)
+		GPIO.setup(self.ECHO, GPIO.IN)
 
 	def getDistanceInCm(self):
-		GPIO.output(TRIG, 0)
+		GPIO.output(self.TRIG, 0)
 		time.sleep(0.000002)
 
-		GPIO.output(TRIG, 1)
+		GPIO.output(self.TRIG, 1)
 		time.sleep(0.00001)
-		GPIO.output(TRIG, 0)
+		GPIO.output(self.TRIG, 0)
 
-		while GPIO.input(ECHO) == 0:
+		while GPIO.input(self.ECHO) == 0:
 			a = 0
 		time1 = time.time()
 
-		while GPIO.input(ECHO) == 1:
+		while GPIO.input(self.ECHO) == 1:
 			a = 1
 		time2 = time.time()
 

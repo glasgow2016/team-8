@@ -8,19 +8,18 @@ import time
 
 class Laser:
 
-	LedPin = 11    # pin11
-
 	def __init__(self):
+		self.LedPin = 11
 		GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
-		GPIO.setup(LedPin, GPIO.OUT)   # Set LedPin's mode is output
-		GPIO.output(LedPin, GPIO.HIGH) # Set LedPin high(+3.3V) to off led
+		GPIO.setup(self.LedPin, GPIO.OUT)   # Set LedPin's mode is output
+		GPIO.output(self.LedPin, GPIO.HIGH) # Set LedPin high(+3.3V) to off led
 
 	def turnOn(self):
-		GPIO.output(LedPin, GPIO.LOW)
+		GPIO.output(self.LedPin, GPIO.LOW)
 
 	def turnOff(self):
-		GPIO.output(LedPin, GPIO.HIGH)
+		GPIO.output(self.LedPin, GPIO.HIGH)
 
 	def destroy(self):
-		GPIO.output(LedPin, GPIO.HIGH)     # led off
+		GPIO.output(self.LedPin, GPIO.HIGH)     # led off
 		GPIO.cleanup()                     # Release resource
