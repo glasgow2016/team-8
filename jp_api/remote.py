@@ -30,7 +30,8 @@ def light():
 @app.route('/sensor/led/<r>/<g>/<b>')
 def led(r, g, b):
     rgbLed = rgb_led()
-    return jsonify(rgbLed.setColor(r, g, b))
+    rgbLed.setColor(r, g, b)
+    return jsonify(True)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
