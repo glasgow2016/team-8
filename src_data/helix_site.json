@@ -1,0 +1,45 @@
+{
+  "sights":[
+    {
+      "sight_id" : "01",
+      "sight_name" : "Falkirk Community Stadium",
+      "sight_pos" : {
+        "latitude" : 56.00068,
+        "longitude" : -3.47021
+      }
+    },
+    {
+      "sight_id" : "02",
+      "sight_name" : "The Helix",
+      "sight_pos" : {
+        "latitude" : 56.0123302,
+        "longitude" : -3.7653298
+      }
+    },
+    {
+      "sight_id" : "03",
+      "sight_name" : "The kelpies Hub",
+      "sight_pos" : {
+        "latitude" : 56.0191813,
+        "longitude" : -3.7576749
+      }
+    },
+    {
+      "sight_id" : "04",
+      "sight_name" : "The Wetland and River Carron",
+      "sight_pos" : {
+        "latitude" : 56.0231527,
+        "longitude" : -3.7539616
+      }
+    },
+    {
+      "sight_id" : "05",
+      "sight_name" : "Abbotshaugh Woods",
+      "sight_pos" : {
+        "latitude" : 56.0208254,
+        "longitude" : -3.786335
+      }
+    }
+  ]
+
+}
