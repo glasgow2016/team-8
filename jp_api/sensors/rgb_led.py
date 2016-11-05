@@ -34,9 +34,9 @@ class RgbLed:
 
 	def setColor(self, r, g, b):
 
-		R_val = _map(r, 0, 255, 0, 100)
-		G_val = _map(g, 0, 255, 0, 100)
-		B_val = _map(b, 0, 255, 0, 100)
+		R_val = self._map(r, 0, 255, 0, 100)
+		G_val = self._map(g, 0, 255, 0, 100)
+		B_val = self._map(b, 0, 255, 0, 100)
 
 		p_R.ChangeDutyCycle(100-R_val)     # Change duty cycle
 		p_G.ChangeDutyCycle(100-G_val)
@@ -46,5 +46,5 @@ class RgbLed:
 		p_R.stop()
 		p_G.stop()
 		p_B.stop()
-		_off()
+		self._off()
 		GPIO.cleanup()
