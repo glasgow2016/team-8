@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 from sensors.laser import Laser as laser
 from sensors.lcd import Lcd as Lcd
-from sensors.ultrasonic_ranging import UltrasonicRanging as ultrasound
+from sensors.ultrasonic_ranging import UltrasonicRanging as Ultrasound
 
 @app.route('/sensor/laser/<on>')
 def laser(on):
@@ -17,7 +17,7 @@ def laser(on):
 
 @app.route('/sensor/ultrasound')
 def ultrasound():
-    ultrasoundSensor = ultrasound()
+    ultrasoundSensor = Ultrasound()
     return jsonify(ultrasoundSensor.getDistanceInCm())
 
 @app.route('/sensor/lcd/<row1>/<row2>')
