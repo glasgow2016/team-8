@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>This is for form</title>
+</head>
+<body  >
+	<h1>Did you see that?</h1>
+	<div class="col-md-6 contact-form">
+		<form = action="#" method="post">
+			<textarea placeholder = "Type in Password please" name="Password" required=""></textarea>
+			<p></p>
+			<input type="submit" name="SUMBIT">
+		</form>
+	</div>
+
+
+<div id="map" style="width:400px;height:400px;"></div>
+
+<script type="text/javascript">
+function myMap() {
+  
+	if(navigator.geolocation){
+
+
+		navigator.geolocation.getCurrentPosition(function(position){
+			var coords = position.coords;
+			var image = 'img/pin.png';
+			var latlng = new google.maps.LatLng(coords.latitude, coords.longitude); // elements 
+
+			var mapOptions = {
+		        center: latlng,
+		        zoom: 15,
+		        mapTypeId: google.maps.MapTypeId.ROADMAP
+				// mapTypeId: google.maps.MapTypeId.HYBRID
+	    	};
+			var map1 = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+			var marker = new google.maps.Marker({
+				position: latlng,
+				icon:image,
+				map:map1
+
+			});
+
+
+		},
+
+			function(error){
+				switch(error.code){
+					case 1:
+						alert("Location was banned");
+						break;
+					case 2:
+						alert("Location unavailable");
+						break;
+					case 3:
+						alert("Timeout");
+						break;
+					default:
+						alert("Unknow error");
+						break;
+				
+				}
+		});
+	}else{
+
+	}
+
+
+}
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
+</body>
+</html>
