@@ -27,5 +27,11 @@ def lcd(row1, row2):
     LcdScreen.setLowerText(row2)
     return jsonify(True)
 
+@app.route('/sensor/lcd/<x>/<y>/<text>')
+def lcd(x, y, text):
+    LcdScreen = Lcd()
+    LcdScreen.setTextAtLocation(x, y, text)
+    return jsonify(True)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8081, debug=True)
