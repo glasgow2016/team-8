@@ -7,8 +7,8 @@ import math
 class RainDetection:
 
 	def __init__(self):
-		self.DO = 17
-		GPIO.setmode(GPIO.BCM)
+		self.DO = 11
+		GPIO.setmode(GPIO.BOARD)
 		ADC.setup(0x48)
 		GPIO.setup(self.DO, GPIO.IN)
 
@@ -17,3 +17,6 @@ class RainDetection:
 
 	def getRawRainValue(self):
 		return ADC.read(0)
+
+	def destroy(self):
+		GPIO.cleanup()
