@@ -1,11 +1,11 @@
+#!flask/bin/python
+from flask import Flask
+app = Flask(__name__)
+
 import sensors.humiture as humiture
 import sensors.rain_detection as rain_detection
 import sensors.photoresistor as photoresistor
 import sensors.rgb_led as rgb_led
-
-from flask import Flask
-
-app = Flask(__name__)
 
 @app.route('/')
 def index():
