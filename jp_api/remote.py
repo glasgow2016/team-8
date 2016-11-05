@@ -32,7 +32,7 @@ def light():
     return lightSensor.getLightValue()
 
 @app.route('/sensor/led/<r>/<g>/<b>')
-def light(r, g, b):
+def led(r, g, b):
     rgbLed = rgb_led()
     return rgbLed.setColor(r, g, b)
 
