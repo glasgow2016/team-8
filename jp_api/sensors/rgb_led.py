@@ -30,14 +30,11 @@ def _off(self):
 	for i in pins:
 		GPIO.output(pins[i], GPIO.HIGH)    # Turn off all leds
 
-def setColor(self, col):   # For example : col = 0x112233
-	R_val = (col & 0xff0000) >> 16
-	G_val = (col & 0x00ff00) >> 8
-	B_val = (col & 0x0000ff) >> 0
+def setColor(self, r, g, b):
 
-	R_val = _map(R_val, 0, 255, 0, 100)
-	G_val = _map(G_val, 0, 255, 0, 100)
-	B_val = _map(B_val, 0, 255, 0, 100)
+	R_val = _map(r, 0, 255, 0, 100)
+	G_val = _map(g, 0, 255, 0, 100)
+	B_val = _map(b, 0, 255, 0, 100)
 
 	p_R.ChangeDutyCycle(100-R_val)     # Change duty cycle
 	p_G.ChangeDutyCycle(100-G_val)
