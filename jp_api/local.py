@@ -28,7 +28,7 @@ def lcd(row1, row2):
     return jsonify(True)
 
 @app.route('/sensor/lcd/<x>/<y>/<text>')
-def lcd(x, y, text):
+def lcdAtLocation(x, y, text):
     LcdScreen = Lcd()
     LcdScreen.setTextAtLocation(x, y, text)
     return jsonify(True)
