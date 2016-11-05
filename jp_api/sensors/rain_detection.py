@@ -4,15 +4,17 @@ import RPi.GPIO as GPIO
 import time
 import math
 
-DO = 17
+class RainDetection:
 
-def __init__(self):
-	GPIO.setmode(GPIO.BCM)
-	ADC.setup(0x48)
-	GPIO.setup(DO, GPIO.IN)
+	DO = 17
 
-def isRaining(self):
-	return not GPIO.input(DO)
+	def __init__(self):
+		GPIO.setmode(GPIO.BCM)
+		ADC.setup(0x48)
+		GPIO.setup(DO, GPIO.IN)
 
-def getRawRainValue(self):
-	return ADC.read(0)
+	def isRaining(self):
+		return not GPIO.input(DO)
+
+	def getRawRainValue(self):
+		return ADC.read(0)

@@ -2,10 +2,10 @@
 from flask import Flask
 app = Flask(__name__)
 
-import sensors.humiture as humiture
-import sensors.rain_detection as rain_detection
-import sensors.photoresistor as photoresistor
-import sensors.rgb_led as rgb_led
+from sensors.humiture import Humiture as humiture
+from sensors.rain_detection import RainDetection as rain_detection
+from sensors.photoresistor import PhotoResistor as photoresistor
+from sensors.rgb_led import RgbLed as rgb_led
 
 @app.route('/')
 def index():
