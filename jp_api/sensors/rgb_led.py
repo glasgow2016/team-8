@@ -34,6 +34,17 @@ class RgbLed:
 
 	def setColor(self, r, g, b):
 
+		r = int(r)
+		g = int(g)
+		b = int(b)
+
+		r = min(r, 255)
+		r = max(r, 0)
+		g = min(g, 255)
+		g = max(g, 0)
+		b = min(b, 255)
+		b = max(b, 0)
+
 		R_val = self._map(r, 0, 255, 0, 100)
 		G_val = self._map(g, 0, 255, 0, 100)
 		B_val = self._map(b, 0, 255, 0, 100)
