@@ -1,5 +1,5 @@
 from sensors.lcd import Lcd as Lcd
-from code.otp import OTP as otp
+from otpcode.otp import OTP as otp
 
 LcdScreen = Lcd()
 codeGenerator = otp('patch of grass')
