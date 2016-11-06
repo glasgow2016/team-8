@@ -18,6 +18,8 @@ SPOTS_BICYCLE = data_accessor.SPOTS_BICYCLE
 COMBO_WALKING = data_accessor.COMBO_WALKING
 COMBO_BICYCLE = data_accessor.COMBO_BICYCLE
 SITE = data_accessor.SITE
+EXCLUDES = data_accessor.EXCLUDES
+
 
 
 @app.route('/')
@@ -114,41 +116,53 @@ def find_map_within_distance_limit_bicycling():
 
 @app.route('/recommend/walking/time', methods=['GET'])
 def recommend_walking_time():
+    res = sensor()
+    excludes = [str(x).zfill(2) for x in res.get('excludes')]
+    messages = res.get('message')
     biu = request.args.get('duration')
-    excludes = request.args.get('excludes',[])
-    return recommend('duration', biu, COMBO_WALKING, excludes=excludes)
+    # excludes = request.args.get('excludes',[])
+    return recommend('duration', biu, COMBO_WALKING, excludes, messages)
 
 
 @app.route('/recommend/walking/distance', methods=['GET'])
 def recommend_walking_distance():
+    res = sensor()
+    excludes = [str(x).zfill(2) for x in res.get('excludes')]
+    messages = res.get('message')
     biu = request.args.get('distance')
-    excludes = request.args.get('excludes',[])
-    return recommend('distance', biu, COMBO_WALKING)
+    # excludes = request.args.get('excludes',[])
+    return recommend('distance', biu, COMBO_WALKING, excludes, messages)
 
 
 @app.route('/recommend/bicycling/time', methods=['GET'])
 def recommend_bicycling_time():
+    res = sensor()
+    excludes = [str(x).zfill(2) for x in res.get('excludes')]
+    messages = res.get('message')
     biu = request.args.get('duration')
-    excludes = request.args.get('excludes',[])
-    return recommend('duration', biu, COMBO_BICYCLE)
+    # excludes = request.args.get('excludes',[])
+    return recommend('duration', biu, COMBO_BICYCLE, excludes, messages)
 
 
 @app.route('/recommend/bicycling/distance', methods=['GET'])
 def recommend_bicycling_distance():
+    res = sensor()
+    excludes = [str(x).zfill(2) for x in res.get('excludes')]
+    messages = res.get('message')
     biu = request.args.get('distance')
-    excludes = request.args.get('excludes',[])
-    return recommend('distance', biu, COMBO_BICYCLE)
+    # excludes = request.args.get('excludes',[])
+    return recommend('distance', biu, COMBO_BICYCLE, excludes, messages)
 
 
-def recommend(this_key,biu, di, excludes=[]):
+def recommend(this_key,biu, di, excludes=[],messages=[]):
     result = []
     filtered_result = []
     dur_limit = float(biu)
     for k,v in di.iteritems():
         if v.get(this_key) <= dur_limit:
             count = 0
-            for exclude in excludes:
-                if exclude in k:
+            for ex in excludes:
+                if ex in k:
                     count += 1
             result.append({'path':{k:v},'ex_hits':count})
 
@@ -161,6 +175,7 @@ def recommend(this_key,biu, di, excludes=[]):
         # filtered_result = result
 
     filtered_result = random_selection(filtered_result, SITE)
+    filtered_result['message'] = messages
     return jsonify(filtered_result)
 
 
@@ -184,7 +199,7 @@ def random_selection(paths, di=SITE):
 # def get_rank():
     # return 'rank here'
 
-@app.route('/sensor')
+# @app.route('/sensor')
 def sensor():
     build_url = REMOTE_IP + ':' + REMOTE_PORT
     endpoint_address = {
@@ -201,15 +216,43 @@ def sensor():
     rainraw = requests.get('http://'+build_url+endpoint_address['rainraw']).json()
     light = requests.get('http://'+build_url+endpoint_address['light']).json()
 
-    res = {
-        'rain' : rain,
-        'humid' : humid,
-        'temperature' : temperature,
-        'rainraw' : rainraw,
-        'light' : light
-    }
+    res = []
+    result = {}
+    result['message'] = []
+    if rain == True:
+        res.append(EXCLUDES.get('rain').get('excludes'))
+        result['message'].append('It is raining!')
+    if float(humid) < 15 :
+        res.append(EXCLUDES.get('humid_low').get('excludes'))
+        result['message'].append('Too Dry!')
+    elif float(humid) > 70:
+        res.append(EXCLUDES.get('humid_high').get('excludes'))
+        result['message'].append('Too Wet!')
+    if float(temperature) < 18:
+        res.append(EXCLUDES.get('temp_low').get('excludes'))
+        result['message'].append('Too cold!')
+    elif float(temperature) > 30:
+        res.append(EXCLUDES.get('temp_high').get('excludes'))
+        result['message'].append('Too hot!')
+    if float(light) > 80:
+        res.append(EXCLUDES.get('light_low').get('excludes'))
+        result['message'].append('Too Dark!')
+    elif float(light) < 30:
+        res.append(EXCLUDES.get('light_high').get('excludes'))
+        result['message'].append('Too Light!')
 
-    return jsonify(res)
+
+
+    res = [y for x in res for y in x]
+    result['excludes'] = res
+    # print result
+    return result
+    # response = {}
+    # response['excludes'] = res
+
+    # return jsonify(response)
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
