@@ -32,7 +32,6 @@ def close():
 
 if __name__ == "__main__":
     try:
-        setup()
         run()
     except KeyboardInterrupt:
         close()
