@@ -5,11 +5,11 @@ LcdScreen = Lcd()
 codeGenerator = otp('patch of grass')
 
 def setup():
-    LcdScreen.setUpperText('The code is')
+    LcdScreen.setUpperText('Hi! Your code is')
 
 def run():
     while True:
-        LcdScreen.setLowerText(codeGenerator.getCode())
+        LcdScreen.setLowerText('     ' + codeGenerator.getCode() + '     ')
 
 def close():
     LcdScreen.clearDisplay()
