@@ -7,7 +7,9 @@ from sensors.lcd import Lcd as Lcd
 from sensors.ultrasonic_ranging import UltrasonicRanging as Ultrasound
 
 laserPointer = Laser()
+laserPointer.destroy()
 ultrasoundSensor = Ultrasound()
+ultrasoundSensor.destroy()
 LcdScreen = Lcd()
 
 @app.route('/sensor/laser/<on>')
@@ -29,7 +31,7 @@ def lcd(row1, row2):
     return jsonify(True)
 
 @app.route('/sensor/lcd/<x>/<y>/<text>')
-def lcdAtLocation():
+def lcdAtLocation(x, y, text):
     LcdScreen.setTextAtLocation(int(x), int(y), text)
     return jsonify(True)
 

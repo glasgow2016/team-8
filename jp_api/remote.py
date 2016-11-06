@@ -8,9 +8,13 @@ from sensors.photoresistor import PhotoResistor as photoresistor
 from sensors.rgb_led import RgbLed as rgb_led
 
 humiditySensor = humiture()
+humiditySensor.destroy()
 rainSensor = rain_detection()
+rainSensor.destroy()
 lightSensor = photoresistor()
+lightSensor.destroy()
 rgbLed = rgb_led()
+rgbLed.destroy()
 
 @app.route('/sensor/humidity')
 def humidity():
