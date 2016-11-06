@@ -2,13 +2,13 @@
 from flask import Flask, jsonify
 app = Flask(__name__)
 
-from sensors.laser import Laser as laser
+from sensors.laser import Laser as Laser
 from sensors.lcd import Lcd as Lcd
 from sensors.ultrasonic_ranging import UltrasonicRanging as Ultrasound
 
 @app.route('/sensor/laser/<on>')
 def laser(on):
-    laserPointer = laser()
+    laserPointer = Laser()
     if on == '1':
         laserPointer.turnOn()
     elif on == '0':
