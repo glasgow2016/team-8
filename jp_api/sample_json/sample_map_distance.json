@@ -1,0 +1,22 @@
+{
+  "distance": 2.9,
+  "duration": 10.0,
+  "nodes": [
+    {
+      "sight_id": "05",
+      "sight_name": "Abbotshaugh Woods",
+      "sight_pos": {
+        "latitude": 56.0208254,
+        "longitude": -3.786335
+      }
+    },
+    {
+      "sight_id": "09",
+      "sight_name": "Rosebank Distillery",
+      "sight_pos": {
+        "latitude": 56.002137,
+        "longitude": -3.805189
+      }
+    }
+  ]
+}
