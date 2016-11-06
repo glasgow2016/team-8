@@ -55,37 +55,49 @@ function setTime() {
     $('#time').addClass('active');
 }
 
-var map;
-
 function gogomap() {
     var url = window.location.search.substring(1);
     $.ajax({
         method: "GET",
-        url: 'http://192.168.1.194:8080/' + url,
+        url: 'http://192.168.1.194:8080/' + url
     })
         .done(function( msg ) {
-            message = msg.message;
-            for ( x in message) {
-                alert(x);
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 56.012147, lng: -3.75928},
+                zoom: 14
+            });
+            weather = msg.message;
+            for (var i = 0; i < weather.length; i++) {
+                alert(weather[i]);
             }
-            location = msg.nodes
-            for (l in location) {
-                new google.maps.Marker({
-                    position: location.sight_pos,
+            loc = msg.nodes;
+            for (var i = 0; i < loc.length; i++) {
+                var marker = new google.maps.Marker({
+                    position: { lat: parseFloat(loc[i].sight_pos.latitude), lng: parseFloat(loc[i].sight_pos.longitude) },
                     map: map
                 });
+                google.maps.event.addListener(marker, 'click', verify);
             }
         });
+}
 
+function verify() {
+    var cod = prompt('Please enter the code');
+    verifyCode(cod);
 }
 
 function verifyCode(code){
     $.ajax({
         method: "GET",
-        url: 'http://192.168.1.194:8080/verify_code?code=' + code,
+        url: 'http://192.168.1.194:8080/verify_code?code=' + code
     })
         .done(function( msg ) {
-            return JSON.parse(msg);
+            if (msg == true) {
+                alert('Congratulations');
+            } else {
+                alert('Wrong :(');
+            }
         });
 }
 
+function initMap() {}
