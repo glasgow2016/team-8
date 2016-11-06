@@ -1,14 +1,3 @@
-/*var jqxhr = $.ajax( "example.php" )
-    .done(function() {
-        alert( "success" );
-    })
-    .fail(function() {
-        alert( "error" );
-    })
-    .always(function() {
-        alert( "complete" );
-    });*/
-
 var walkOrCycle;
 var distanceOrTime;
 var disValue;
@@ -35,7 +24,7 @@ function go() {
 }
 
 function gogo(v){
-    window.location.href = v;
+    window.location.href = 'map.html?' + v;
 }
 
 function setWalk() {
@@ -65,3 +54,15 @@ function setTime() {
     $('#distance').removeClass('active');
     $('#time').addClass('active');
 }
+
+function gogomap() {
+    var url = window.location.search.substring(1);
+    $.ajax({
+        method: "GET",
+        url: 'http://192.168.1.194:8080/' + url,
+    })
+        .done(function( msg ) {
+            alert( "Data Saved: " + msg );
+        });
+}
+

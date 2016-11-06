@@ -1,5 +1,7 @@
 #!flask/bin/python
 from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
+
 from itertools import combinations
 # import helix_map
 import json
@@ -11,6 +13,8 @@ from otpcode import otp
 # import map_data
 
 app = Flask(__name__)
+CORS(app)
+
 REMOTE_IP = '192.168.1.118'
 REMOTE_PORT = '8080'
 
