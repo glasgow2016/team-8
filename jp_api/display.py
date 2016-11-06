@@ -9,7 +9,7 @@ def setup():
 
 def run():
     while True:
-        LcdScreen.setLowerText(otp.getCode())
+        LcdScreen.setLowerText(codeGenerator.getCode())
 
 def close():
     LcdScreen.clearDisplay()
