@@ -14,3 +14,6 @@ with open('src_data/all_dist_duration_bicycle.json','r') as f:
 
 with open('src_data/helix_site.json','r') as f:
     SITE = json.loads(f.read()).get('sights')
+
+with open('src_data/excludes.json') as f:
+    EXCLUDES = json.loads(f.read())
