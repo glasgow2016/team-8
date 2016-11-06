@@ -6,10 +6,10 @@ import time
 
 LcdScreen = Lcd()
 codeGenerator = otp('patch of grass')
-laserPointer = Laser()
-ultrasoundSensor = Ultrasound()
 
 def run():
+    laserPointer = Laser()
+    ultrasoundSensor = Ultrasound()
     timeout = -1
     while True:
         if timeout > 0 and time.time() - timeout < 30:
@@ -27,7 +27,6 @@ def run():
 
 def close():
     LcdScreen.clearDisplay()
-    laserPointer.turnOff()
 
 if __name__ == "__main__":
     try:
