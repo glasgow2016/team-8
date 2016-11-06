@@ -33,5 +33,11 @@ def lcdAtLocation(x, y, text):
     LcdScreen.setTextAtLocation(x, y, text)
     return jsonify(True)
 
+@app.route('/sensor/lcd/clear')
+def lcdClear(x, y, text):
+    LcdScreen = Lcd()
+    LcdScreen.clearDisplay()
+    return jsonify(True)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8081, debug=True)
