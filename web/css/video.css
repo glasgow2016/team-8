@@ -746,6 +746,7 @@ control positioning and full window mode. **
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+    width: 100% !important;
 }
 /* Playback technology elements expand to the width/height of the containing div
     <video> or <object> */
@@ -859,7 +860,6 @@ body.vjs-full-window {
   font-size: 18px;
   font-family: Arial, sans-serif;
   text-align: center;
-  width: 960px !important;
   height: 420px !important;
   margin: 0px auto;
 }
