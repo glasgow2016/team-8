@@ -1,0 +1,161 @@
+{
+  "sights":{
+    "01":{
+      "sight_id" : "01",
+      "sight_name" : "Falkirk Community Stadium",
+      "sight_pos" : {
+        "latitude" : 56.0035678,
+        "longitude" : -3.788126
+      }
+    },
+    "02":{
+      "sight_id" : "02",
+      "sight_name" : "The Helix",
+      "sight_pos" : {
+        "latitude" : 56.0123302,
+        "longitude" : -3.7653298
+      }
+    },
+    "03":{
+      "sight_id" : "03",
+      "sight_name" : "The kelpies Hub",
+      "sight_pos" : {
+        "latitude" : 56.0191813,
+        "longitude" : -3.7576749
+      }
+    },
+    "04":{
+      "sight_id" : "04",
+      "sight_name" : "The Wetland and River Carron",
+      "sight_pos" : {
+        "latitude" : 56.0231527,
+        "longitude" : -3.7539616
+      }
+    },
+    "05":{
+      "sight_id" : "05",
+      "sight_name" : "Abbotshaugh Woods",
+      "sight_pos" : {
+        "latitude" : 56.0208254,
+        "longitude" : -3.786335
+      }
+    },
+
+     "06":{
+      "sight_id" : "06",
+      "sight_name" : "Dawson Mural",
+      "sight_pos" : {
+        "latitude" : 56.020703,
+        "longitude" : -3.783312
+      }
+    },
+
+     "07":{
+      "sight_id" : "07",
+      "sight_name" : "Carron Works",
+      "sight_pos" : {
+        "latitude" : 56.020081,
+        "longitude" : -3.796460
+      }
+    },
+
+     "08":{
+      "sight_id" : "08",
+      "sight_name" : "Forth & Clyde Canal",
+      "sight_pos" : {
+        "latitude" : 56.019361,
+        "longitude" : -3.756732
+      }
+    },
+
+     "09":{
+      "sight_id" : "09",
+      "sight_name" : "Rosebank Distillery",
+      "sight_pos" : {
+        "latitude" : 56.002137,
+        "longitude" : -3.805189
+      }
+    },
+
+     "10":{
+      "sight_id" : "10",
+      "sight_name" : "The Falkirk Wheel",
+      "sight_pos" : {
+        "latitude" : 55.8757089,
+        "longitude" : -4.3390963
+      }
+    },
+
+     "11":{
+      "sight_id" : "11",
+      "sight_name" : "Roughcastle Tunnel",
+      "sight_pos" : {
+        "latitude" : 55.9980846,
+        "longitude" : -3.8533885
+      }
+    },
+
+     "12":{
+      "sight_id" : "12",
+      "sight_name" : "Union Canal",
+      "sight_pos" : {
+        "latitude" : 56.0006292,
+        "longitude" : -3.8360882
+      }
+    },
+
+       "13":{
+      "sight_id" : "13",
+      "sight_name" : "Falkirk High Railway Station",
+      "sight_pos" : {
+        "latitude" : 55.9919138,
+        "longitude" : -3.8347797
+      }
+    },
+
+       "14":{
+      "sight_id" : "14",
+      "sight_name" : "Falkirk Tunnel",
+      "sight_pos" : {
+        "latitude" : 55.987937,
+        "longitude" : -3.8347797
+      }
+    },
+
+       "15":{
+      "sight_id" : "15",
+      "sight_name" : "Callendar Park",
+      "sight_pos" : {
+        "latitude" : 55.991577,
+        "longitude" : -3.771849
+      }
+    },
+
+         "16":{
+      "sight_id" : "16",
+      "sight_name" : "Callendar House",
+      "sight_pos" : {
+        "latitude" : 55.992839,
+        "longitude" : -3.7755475
+      }
+    },
+
+         "17":{
+      "sight_id" : "17",
+      "sight_name" : "Westquarter Glen",
+      "sight_pos" : {
+        "latitude" : 55.988024,
+        "longitude" : -3.7417958
+      }
+    },
+
+    "18":{
+      "sight_id" : "18",
+      "sight_name" : "Primrose Road Underpass",
+      "sight_pos" : {
+        "latitude" : 56.0049461,
+        "longitude" : -3.7467122
+      }
+    }
+  }
+}
