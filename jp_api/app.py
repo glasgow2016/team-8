@@ -7,6 +7,7 @@ import config
 import random
 import data_accessor
 import requests
+from otpcode import otp
 # import map_data
 
 app = Flask(__name__)
@@ -147,6 +148,8 @@ def recommend_bicycling_time():
 @app.route('/recommend/bicycling/distance', methods=['GET'])
 def recommend_bicycling_distance():
     res = sensor()
+    # excludes = res.get('excludes',[])
+    # messages = res.get('messages',[])
     excludes = [str(x).zfill(2) for x in res.get('excludes')]
     messages = res.get('message')
     biu = request.args.get('distance')
@@ -247,10 +250,22 @@ def sensor():
     result['excludes'] = res
     # print result
     return result
+    # return jsonify(result)
     # response = {}
     # response['excludes'] = res
 
     # return jsonify(response)
+
+@app.route('/show_code', methods=['GET'])
+def show_code():
+    biubiu = otp.OTP('patch of grass')
+    return jsonify(biubiu.getCode())
+
+@app.route('/verify_code', methods=['GET'])
+def verify_code():
+    code = request.args.get('code')
+    biubiu = otp.OTP('patch of grass')
+    return jsonify(biubiu.verifyCode(code))
 
 
 
