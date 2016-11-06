@@ -112,38 +112,50 @@ def find_map_within_distance_limit_bicycling():
 @app.route('/recommend/walking/time', methods=['GET'])
 def recommend_walking_time():
     biu = request.args.get('duration')
-    return recommend('duration', biu, COMBO_WALKING)
+    excludes = request.args.get('excludes',[])
+    return recommend('duration', biu, COMBO_WALKING, excludes=excludes)
 
 
 @app.route('/recommend/walking/distance', methods=['GET'])
 def recommend_walking_distance():
     biu = request.args.get('distance')
+    excludes = request.args.get('excludes',[])
     return recommend('distance', biu, COMBO_WALKING)
 
 
 @app.route('/recommend/bicycling/time', methods=['GET'])
 def recommend_bicycling_time():
     biu = request.args.get('duration')
+    excludes = request.args.get('excludes',[])
     return recommend('duration', biu, COMBO_BICYCLE)
 
 
 @app.route('/recommend/bicycling/distance', methods=['GET'])
 def recommend_bicycling_distance():
     biu = request.args.get('distance')
+    excludes = request.args.get('excludes',[])
     return recommend('distance', biu, COMBO_BICYCLE)
 
 
-def recommend(this_key,biu, di):
+def recommend(this_key,biu, di, excludes=[]):
     result = []
-
+    filtered_result = []
     dur_limit = float(biu)
     for k,v in di.iteritems():
         if v.get(this_key) <= dur_limit:
-            result.append({k:v})
+            count = 0
+            for exclude in excludes:
+                if exclude in k:
+                    count += 1
+            result.append({'path':{k:v},'ex_hits':count})
 
-    filtered_result = [x for x in result if int(x.values()[0].get(this_key)) > int(biu)/2]
-    if filtered_result == []:
-        filtered_result = result
+    if len(result) > 3:
+        filtered_result = sorted(result, key=lambda k:k['ex_hits'])[:len(result)/2]
+    else:
+        filtered_result = sorted(result, key=lambda k:k['ex_hits'])
+    # filtered_result = [x for x in result if int(x.values()[0].get(this_key)) > int(biu)/2]
+    # if filtered_result == []:
+        # filtered_result = result
 
     filtered_result = random_selection(filtered_result, SITE)
     return jsonify(filtered_result)
@@ -153,7 +165,7 @@ def recommend(this_key,biu, di):
 def random_selection(paths, di=SITE):
     result = {}
     index = random.randint(0,len(paths))
-    path = paths[index]
+    path = paths[index]['path']
     nodes = path.keys()[0].split('_')
     result['distance'] = path.values()[0]['distance']
     result['duration'] = path.values()[0]['duration']
