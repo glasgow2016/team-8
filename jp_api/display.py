@@ -26,6 +26,8 @@ def run():
 
 def close():
     LcdScreen.clearDisplay()
+    Laser().destroy()
+    Ultrasound().destroy()
 
 if __name__ == "__main__":
     try:
