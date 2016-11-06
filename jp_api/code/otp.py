@@ -1,11 +1,12 @@
 import pyotp
-totp = pyotp.TOTP("JBSWY3DPEHPK3PXP")
-print("Current OTP:", totp.now())
 
-totp = pyotp.TOTP('base32secret3232')
-totp.now() # => 492039
+class OTP:
 
-# OTP verified for current time
-totp.verify(492039) # => True
-time.sleep(30)
-totp.verify(492039) # => False
+    def __init__(self, secret):
+        self.totp = pyotp.TOTP(secret)
+
+    def getCode(self):
+        return self.totp.now()
+
+    def verifyCode(self, code):
+        return self.totp.verify(code)

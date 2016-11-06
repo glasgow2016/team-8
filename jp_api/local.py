@@ -30,11 +30,11 @@ def lcd(row1, row2):
 @app.route('/sensor/lcd/<x>/<y>/<text>')
 def lcdAtLocation(x, y, text):
     LcdScreen = Lcd()
-    LcdScreen.setTextAtLocation(x, y, text)
+    LcdScreen.setTextAtLocation(int(x), int(y), text)
     return jsonify(True)
 
 @app.route('/sensor/lcd/clear')
-def lcdClear(x, y, text):
+def lcdClear():
     LcdScreen = Lcd()
     LcdScreen.clearDisplay()
     return jsonify(True)
