@@ -8,16 +8,17 @@ LcdScreen = Lcd()
 codeGenerator = otp('patch of grass')
 
 def run():
-    laserPointer = Laser()
-    ultrasoundSensor = Ultrasound()
+
     timeout = -1
     while True:
         if timeout > 0 and time.time() - timeout < 30:
             LcdScreen.setUpperText('Hi! Your code is')
             LcdScreen.setLowerText('     ' + codeGenerator.getCode() + '     ')
+            laserPointer = Laser()
             laserPointer.turnOn()
             time.sleep(2)
         else:
+            ultrasoundSensor = Ultrasound()
             if ultrasoundSensor.getDistanceInCm() < 140:
                 timeout = time.time()
             else:
