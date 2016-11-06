@@ -14,17 +14,15 @@ def run():
         if timeout > 0 and time.time() - timeout < 30:
             LcdScreen.setUpperText('Hi! Your code is')
             LcdScreen.setLowerText('     ' + codeGenerator.getCode() + '     ')
-            laserPointer = Laser()
-            laserPointer.turnOn()
+            Laser().turnOn()
             time.sleep(2)
         else:
-            ultrasoundSensor = Ultrasound()
-            if ultrasoundSensor.getDistanceInCm() < 140:
+            if Ultrasound().getDistanceInCm() < 140:
                 timeout = time.time()
             else:
                 timeout = -1
                 LcdScreen.clearDisplay()
-                laserPointer.turnOff()
+                Laser().turnOff()
 
 def close():
     LcdScreen.clearDisplay()
