@@ -22,6 +22,11 @@ def rain():
     rainSensor = rain_detection()
     return jsonify(rainSensor.isRaining())
 
+@app.route('/sensor/rainraw')
+def rainRaw():
+    rainSensor = rain_detection()
+    return jsonify(rainSensor.getRawRainValue())
+
 @app.route('/sensor/light')
 def light():
     lightSensor = photoresistor()

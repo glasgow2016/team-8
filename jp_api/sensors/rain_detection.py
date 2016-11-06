@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 class RainDetection:
 
 	def __init__(self):
-		self.DO = 11
+		self.DO = 15
 		GPIO.setmode(GPIO.BOARD)
 		ADC.setup(0x48)
 		GPIO.setup(self.DO, GPIO.IN)
