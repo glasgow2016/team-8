@@ -6,14 +6,11 @@ from sensors.laser import Laser as Laser
 from sensors.lcd import Lcd as Lcd
 from sensors.ultrasonic_ranging import UltrasonicRanging as Ultrasound
 
-laserPointer = Laser()
-laserPointer.destroy()
-ultrasoundSensor = Ultrasound()
-ultrasoundSensor.destroy()
 LcdScreen = Lcd()
 
 @app.route('/sensor/laser/<on>')
 def laser(on):
+    laserPointer = Laser()
     if on == '1':
         laserPointer.turnOn()
     elif on == '0':
@@ -22,6 +19,7 @@ def laser(on):
 
 @app.route('/sensor/ultrasound')
 def ultrasound():
+    ultrasoundSensor = Ultrasound()
     return jsonify(ultrasoundSensor.getDistanceInCm())
 
 @app.route('/sensor/lcd/<row1>/<row2>')
