@@ -9,9 +9,8 @@ codeGenerator = otp('patch of grass')
 laserPointer = Laser()
 ultrasoundSensor = Ultrasound()
 
-timeout = -1
-
 def run():
+    timeout = -1
     while True:
         if timeout > 0 and time.time() - timeout < 30:
             LcdScreen.setUpperText('Hi! Your code is')
