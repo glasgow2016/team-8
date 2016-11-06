@@ -5,7 +5,7 @@ from sensors.ultrasonic_ranging import UltrasonicRanging as Ultrasound
 import time
 import RPi.GPIO as GPIO
 
-GPIO.setWarnings(False)
+GPIO.setwarnings(False)
 LcdScreen = Lcd()
 codeGenerator = otp('patch of grass')
 laserPointer = Laser()
@@ -30,6 +30,7 @@ def run():
 def close():
     LcdScreen.clearDisplay()
     laserPointer.turnOff()
+    GPIO.cleanup()
 
 if __name__ == "__main__":
     try:
