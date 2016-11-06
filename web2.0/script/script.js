@@ -55,6 +55,8 @@ function setTime() {
     $('#time').addClass('active');
 }
 
+var map;
+
 function gogomap() {
     var url = window.location.search.substring(1);
     $.ajax({
@@ -62,7 +64,28 @@ function gogomap() {
         url: 'http://192.168.1.194:8080/' + url,
     })
         .done(function( msg ) {
-            alert( "Data Saved: " + msg );
+            message = msg.message;
+            for ( x in message) {
+                alert(x);
+            }
+            location = msg.nodes
+            for (l in location) {
+                new google.maps.Marker({
+                    position: location.sight_pos,
+                    map: map
+                });
+            }
+        });
+
+}
+
+function verifyCode(code){
+    $.ajax({
+        method: "GET",
+        url: 'http://192.168.1.194:8080/verify_code?code=' + code,
+    })
+        .done(function( msg ) {
+            return JSON.parse(msg);
         });
 }
 
