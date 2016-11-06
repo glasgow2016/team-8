@@ -17,7 +17,6 @@ COMBO_BICYCLE = data_accessor.COMBO_BICYCLE
 SITE = data_accessor.SITE
 
 
-
 @app.route('/')
 def index():
     return "Hey! Human"
@@ -112,76 +111,37 @@ def find_map_within_distance_limit_bicycling():
 
 @app.route('/recommend/walking/time', methods=['GET'])
 def recommend_walking_time():
-    result = []
-    duration = request.args.get('duration')
-    dur_limit = float(duration)
-    for k,v in COMBO_WALKING.iteritems():
-        if v.get('duration') <= dur_limit:
-            result.append({k:v})
-
-    filtered_result = [x for x in result if int(x.values()[0].get('duration')) > int(duration)/2]
-    if filtered_result == []:
-        filtered_result = result
-
-    filtered_result = random_selection(filtered_result, SITE)
-    # max_key = max(key_helper)
-
-        # new_list[k] = v.values().get('duration')
-    # newlist = sorted(result, key=lambda k: k['duration'])
-    # newlist = sorted(result, key=lambda x: x.value().get('duration') reverse=True)
-    return jsonify(filtered_result)
+    biu = request.args.get('duration')
+    return recommend('duration', biu, COMBO_WALKING)
 
 
 @app.route('/recommend/walking/distance', methods=['GET'])
 def recommend_walking_distance():
-    result = []
-    distance = request.args.get('distance')
-    dur_limit = float(distance)
-    for k,v in COMBO_WALKING.iteritems():
-        if v.get('distance') <= dur_limit:
-            result.append({k:v})
-
-    filtered_result = [x for x in result if int(x.values()[0].get('distance')) > int(distance)/2]
-    if filtered_result == []:
-        filtered_result = result
-
-    filtered_result = random_selection(filtered_result, SITE)
-    return jsonify(filtered_result)
+    biu = request.args.get('distance')
+    return recommend('distance', biu, COMBO_WALKING)
 
 
 @app.route('/recommend/bicycling/time', methods=['GET'])
 def recommend_bicycling_time():
-    result = []
-    duration = request.args.get('duration')
-    dur_limit = float(duration)
-    for k,v in COMBO_WALKING.iteritems():
-        if v.get('duration') <= dur_limit:
-            result.append({k:v})
-
-    filtered_result = [x for x in result if int(x.values()[0].get('duration')) > int(duration)/2]
-    if filtered_result == []:
-        filtered_result = result
-
-    filtered_result = random_selection(filtered_result, SITE)
-    # max_key = max(key_helper)
-
-        # new_list[k] = v.values().get('duration')
-    # newlist = sorted(result, key=lambda k: k['duration'])
-    # newlist = sorted(result, key=lambda x: x.value().get('duration') reverse=True)
-    return jsonify(filtered_result)
+    biu = request.args.get('duration')
+    return recommend('duration', biu, COMBO_BICYCLE)
 
 
 @app.route('/recommend/bicycling/distance', methods=['GET'])
 def recommend_bicycling_distance():
+    biu = request.args.get('distance')
+    return recommend('distance', biu, COMBO_BICYCLE)
+
+
+def recommend(this_key,biu, di):
     result = []
 
-    distance = request.args.get('distance')
-    dur_limit = float(distance)
-    for k,v in COMBO_BICYCLE.iteritems():
-        if v.get('distance') <= dur_limit:
+    dur_limit = float(biu)
+    for k,v in di.iteritems():
+        if v.get(this_key) <= dur_limit:
             result.append({k:v})
 
-    filtered_result = [x for x in result if int(x.values()[0].get('distance')) > int(distance)/2]
+    filtered_result = [x for x in result if int(x.values()[0].get(this_key)) > int(biu)/2]
     if filtered_result == []:
         filtered_result = result
 
@@ -201,18 +161,7 @@ def random_selection(paths, di=SITE):
     print nodes[0] in di.keys()
     for node in nodes:
         result['nodes'].append(di[node])
-    # print index
-    # result['distance'] = paths[index].values()['distance']
-    # result['duration'] = paths[index].values()['duration']
-    # result['duration'] = paths[index]['duration']
-    # result['points'] = []
-    # for k in paths[index].keys()[0].split('_'):
-        # result['points'].append(SITE[str(k)])
-    # result = paths[index]
-    # result['points'] = []
     return result
-
-
 
 
 
