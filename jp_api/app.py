@@ -6,9 +6,12 @@ import json
 import config
 import random
 import data_accessor
+import requests
 # import map_data
 
 app = Flask(__name__)
+REMOTE_IP = '192.168.1.118'
+REMOTE_PORT = '8080'
 
 SPOTS_WALKING = data_accessor.SPOTS_WALKING
 SPOTS_BICYCLE = data_accessor.SPOTS_BICYCLE
@@ -177,13 +180,36 @@ def random_selection(paths, di=SITE):
 
 
 
-@app.route('/ranking')
-def get_rank():
-    return 'rank here'
+# @app.route('/ranking')
+# def get_rank():
+    # return 'rank here'
 
 @app.route('/sensor')
 def sensor():
-    return 'sensor'
+    build_url = REMOTE_IP + ':' + REMOTE_PORT
+    endpoint_address = {
+        'rain' : '/sensor/rain',
+        'humid' : '/sensor/humidity',
+        'temperature' : '/sensor/temperature',
+        'rainraw' : '/sensor/rainraw',
+        'light' : '/sensor/light'
+    }
+    # print(build_url+endpoint_address['rain'])
+    rain = requests.get('http://'+build_url+endpoint_address['rain']).json()
+    humid = requests.get('http://'+build_url+endpoint_address['humid']).json()
+    temperature = requests.get('http://'+build_url+endpoint_address['temperature']).json()
+    rainraw = requests.get('http://'+build_url+endpoint_address['rainraw']).json()
+    light = requests.get('http://'+build_url+endpoint_address['light']).json()
+
+    res = {
+        'rain' : rain,
+        'humid' : humid,
+        'temperature' : temperature,
+        'rainraw' : rainraw,
+        'light' : light
+    }
+
+    return jsonify(res)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
