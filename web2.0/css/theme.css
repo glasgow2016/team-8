@@ -1,0 +1,66 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+    position: static;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+    margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+    width: auto;
+}
+
+#map {
+    height: 100%;
+}
+
+.background {
+    background-image: url("../images/background.jpg");
+    background-color: #000000;
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -100;
+}
+
+html, body.map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.centeredstart {
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+}
+
+.centeredactivityl {
+    position: fixed;
+    top: 60%;
+    left: 20%;
+}
+
+.centeredactivityr {
+    position: fixed;
+    top: 80%;
+    right: 20%;
+}
